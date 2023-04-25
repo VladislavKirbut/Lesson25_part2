@@ -1,4 +1,4 @@
-package by.teachmeskills.hw25.model;
+package by.teachmeskills.hw25.models;
 
 import by.teachmeskills.hw25.exceptions.IncorrectFormatException;
 
@@ -10,11 +10,11 @@ public abstract class Show {
     private final static double MAX_RATING = 10.0;
     private final static double MIN_RATING = 0.0;
     private final static int MIN_COUNT_OF_RATINGS_LENGTH = 0;
-    private final String nameOfShow;
-    private final Year releaseYear;
-    private final String countryCode;
-    private final double rating;
-    private final int countOfRatings;
+    protected final String nameOfShow;
+    protected final Year releaseYear;
+    protected final String countryCode;
+    protected final double rating;
+    protected final int countOfRatings;
 
     public Show(String nameOfShow, Year releaseYear, String countryCode, double rating, int countOfRatings) {
         if (nameOfShow.isEmpty())
@@ -52,6 +52,4 @@ public abstract class Show {
     public int getCountOfRatings() {
         return countOfRatings;
     }
-
-
 }

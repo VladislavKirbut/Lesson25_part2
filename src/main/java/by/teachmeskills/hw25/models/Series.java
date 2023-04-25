@@ -1,4 +1,4 @@
-package by.teachmeskills.hw25.model;
+package by.teachmeskills.hw25.models;
 
 import by.teachmeskills.hw25.exceptions.IncorrectFormatException;
 
@@ -12,8 +12,8 @@ public class Series extends Show {
     private final int countOfSeasons;
     private final int countOfEpisode;
 
-    public Series(String nameOfShow, Year releaseYear, String countryCode, double rating, int countOfRatings,
-                  Year yearOfLastEpisode, int countOfSeasons, int countOfEpisode) {
+    public Series(String nameOfShow, Year releaseYear, Year yearOfLastEpisode, String countryCode,
+                  int countOfSeasons, int countOfEpisode, double rating, int countOfRatings) {
         super(nameOfShow, releaseYear, countryCode, rating, countOfRatings);
 
         if (yearOfLastEpisode.isBefore(releaseYear))
@@ -38,5 +38,11 @@ public class Series extends Show {
 
     public int getCountOfEpisode() {
         return countOfEpisode;
+    }
+
+    @Override
+    public String toString() {
+        return "{Series} %-28s %4s --> %4s %3s %4s %5s %5s %10d".formatted(nameOfShow, releaseYear, yearOfLastEpisode, countryCode,
+                                                                  countOfSeasons, countOfEpisode, rating, countOfRatings);
     }
 }
