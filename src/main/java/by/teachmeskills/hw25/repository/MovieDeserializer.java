@@ -10,7 +10,7 @@ public class MovieDeserializer implements ShowDeserializer {
     public Show deserialize(String line) {
         String[] lineParts = line.split(",");
         return new Movie(lineParts[0],
-                         Year.of(Integer.parseInt(lineParts[1])),
+                         Year.parse(lineParts[1]),
                          lineParts[2],
                          Double.parseDouble(lineParts[3]),
                          Integer.parseInt(lineParts[4])
