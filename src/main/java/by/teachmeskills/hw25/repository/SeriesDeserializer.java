@@ -10,8 +10,8 @@ public class SeriesDeserializer implements ShowDeserializer {
     public Show deserialize(String line) {
         String[] linesPart = line.split(",");
         return new Series(linesPart[0],
-                          Year.of(Integer.parseInt(linesPart[1])),
-                          Year.of(Integer.parseInt(linesPart[2])),
+                          Year.parse(linesPart[1]),
+                          Year.parse(linesPart[2]),
                           linesPart[3],
                           Integer.parseInt(linesPart[4]),
                           Integer.parseInt(linesPart[5]),
