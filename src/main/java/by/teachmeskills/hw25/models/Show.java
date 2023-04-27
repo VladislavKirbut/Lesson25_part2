@@ -3,6 +3,7 @@ package by.teachmeskills.hw25.models;
 import by.teachmeskills.hw25.exceptions.IncorrectFormatException;
 import java.util.Comparator;
 import java.time.Year;
+import java.util.Objects;
 import java.util.function.Predicate;
 import java.util.regex.Pattern;
 
@@ -87,6 +88,23 @@ public abstract class Show {
 
     public static Predicate<Show> ratingContains(double minRating, double maxRating) {
         return new PredicateByRating(minRating, maxRating);
+    }
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+
+        if (obj != null && this.getClass() == obj.getClass()) return true;
+
+        Show show = (Show) obj;
+
+        return this.nameOfShow.equals(show.nameOfShow) && this.releaseYear.equals(show.releaseYear) &&
+               this.countryCode.equals(show.countryCode) && this.rating == show.rating &&
+               this.countOfRatings == show.countOfRatings;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(nameOfShow, releaseYear, countryCode, rating, countOfRatings);
     }
 
     public String getNameOfShow() {

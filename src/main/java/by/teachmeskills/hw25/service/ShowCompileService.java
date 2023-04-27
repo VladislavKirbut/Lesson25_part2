@@ -26,7 +26,7 @@ public class ShowCompileService implements ShowService {
         return showList;
     }
 
-    private static void applyFilters(List<Predicate<Show>> filters, List<Show> showList) {
+    public static void applyFilters(List<Predicate<Show>> filters, List<Show> showList) {
         if (!filters.isEmpty()) {
             Iterator<Predicate<Show>> filtersIterator = filters.iterator();
             Predicate<Show> filter = filtersIterator.next();
@@ -38,7 +38,7 @@ public class ShowCompileService implements ShowService {
         }
     }
 
-    private static void applySorting(List<Comparator<Show>> sortingList, List<Show> showList) {
+    public static void applySorting(List<Comparator<Show>> sortingList, List<Show> showList) {
         if (!sortingList.isEmpty()) {
             Iterator<Comparator<Show>> sortingIterator = sortingList.iterator();
             Comparator<Show> sorting = sortingIterator.next();
@@ -49,4 +49,6 @@ public class ShowCompileService implements ShowService {
             showList.sort(sorting);
         }
     }
+
+
 }
