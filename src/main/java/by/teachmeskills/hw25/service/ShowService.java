@@ -7,5 +7,5 @@ import java.util.List;
 import java.util.function.Predicate;
 
 public interface ShowService {
-    List<Show> getShowList(List<Comparator<Show>> sorting, List<Predicate<Show>> filter);
+    List<Show> getShowList(Comparator<Show> sorting, Predicate<Show> filter);
 }
