@@ -3,6 +3,7 @@ package by.teachmeskills.hw25.models;
 import by.teachmeskills.hw25.exceptions.IncorrectFormatException;
 
 import java.time.Year;
+import java.util.Objects;
 
 public class Series extends Show {
     private final static int MIN_COUNT_OF_SEASONS = 1;
@@ -44,5 +45,10 @@ public class Series extends Show {
     public String toString() {
         return "{Series} %-28s %4s --> %4s %3s %4s %5s %5s %10d".formatted(nameOfShow, releaseYear, yearOfLastEpisode, countryCode,
                                                                   countOfSeasons, countOfEpisode, rating, countOfRatings);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), yearOfLastEpisode, countOfSeasons, countOfEpisode);
     }
 }

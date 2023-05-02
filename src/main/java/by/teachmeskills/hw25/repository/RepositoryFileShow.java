@@ -11,6 +11,7 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Stream;
 
 public class RepositoryFileShow implements RepositoryShow {
     private final static Path FILMS = Path.of("films.csv");
@@ -32,16 +33,11 @@ public class RepositoryFileShow implements RepositoryShow {
 
     private void getShowList(List<Show> showList, Path path, ShowDeserializer deserializer) {
         Path pathToFile = properties.getPathToFile().resolve(path);
-        List<String> csvLines;
 
-        try {
-            csvLines = Files.readAllLines(pathToFile, StandardCharsets.UTF_8);
+        try (Stream<String> csvLines = Files.lines(pathToFile, StandardCharsets.UTF_8)){
+            showList.addAll(csvLines.map(deserializer::deserialize).toList());
         } catch (IOException exception) {
             throw new UncheckedIOException(exception);
-        }
-
-        for (String line: csvLines) {
-            showList.add(deserializer.deserialize(line));
         }
     }
 }

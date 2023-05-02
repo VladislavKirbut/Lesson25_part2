@@ -1,7 +1,11 @@
 package by.teachmeskills.hw25;
 
 import by.teachmeskills.hw25.config.RepositoryShowProperties;
-import by.teachmeskills.hw25.models.Show;
+import by.teachmeskills.hw25.controller.ShowCompileController;
+import by.teachmeskills.hw25.controller.ShowController;
+import by.teachmeskills.hw25.repository.RepositoryShow;
+import by.teachmeskills.hw25.service.ShowCompileService;
+import by.teachmeskills.hw25.service.ShowService;
 import by.teachmeskills.hw25.repository.RepositoryFileShow;
 
 import java.nio.file.Path;
@@ -9,10 +13,10 @@ import java.nio.file.Path;
 public class Application {
     public static void main(String[] args) {
         RepositoryShowProperties properties = new RepositoryShowProperties(Path.of(System.getenv("PATH_TO_REPO")));
-        RepositoryFileShow repository = new RepositoryFileShow(properties);
+        RepositoryShow repository = new RepositoryFileShow(properties);
+        ShowService service = new ShowCompileService(repository);
+        ShowController controller = new ShowCompileController(service);
 
-        for (Show show: repository.getAll()) {
-            System.out.println(show);
-        }
+        controller.run();
     }
 }
