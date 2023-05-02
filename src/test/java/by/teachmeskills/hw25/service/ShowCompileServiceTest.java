@@ -34,7 +34,7 @@ public class ShowCompileServiceTest {
     }
 
     @Test
-    void shouldBeReturnedDefaultShowListIfFilterAndSortingNull() {
+    void actualShouldBeEqualToExpectedIfSetNull() {
         Mockito.when(repo.getAll()).thenReturn(SHOW_LIST);
 
         List<Show> actual = service.getShowList(null, null);
@@ -42,14 +42,11 @@ public class ShowCompileServiceTest {
         assertEquals(SHOW_LIST, actual);
     }
 
-
     @Test
-    void shouldBeReturnedEmptyListIfListFromRepoEmpty() {
+    void shouldBeExceptionIfListFromRepoIsEmpty() {
         List<Show> actual = List.of();
         Mockito.when(repo.getAll()).thenReturn(actual);
         Comparator<Show> comparator = Show.BY_RATING;
-
-        List<Show> expected = List.of();
 
         assertThrows(
                 UnsupportedOperationException.class,
@@ -58,7 +55,7 @@ public class ShowCompileServiceTest {
     }
 
     @Test
-    void shouldBeReturnedFilteredByCountryCodeAndSortedByDirectRating() {
+    void shouldBeFilteredByCountryCodeAndSortedByDirectRating() {
         Mockito.when(repo.getAll()).thenReturn(SHOW_LIST);
 
         Comparator<Show> sorting = Show.BY_RATING;
@@ -74,7 +71,7 @@ public class ShowCompileServiceTest {
     }
 
     @Test
-    void shouldBeReturnedFilteredByRatingAndReverseSortedByReleaseYear() {
+    void shouldBeFilteredByRatingAndReverseSortedByReleaseYear() {
         Mockito.when(repo.getAll()).thenReturn(SHOW_LIST);
 
         Comparator<Show> sorting = Show.BY_RELEASE_YEAR.reversed();
@@ -90,7 +87,7 @@ public class ShowCompileServiceTest {
     }
 
     @Test
-    void shouldBeReturnedFilteredByRatingIfSortingNull() {
+    void shouldBeFilteredByRatingIfSortingIsNull() {
         Mockito.when(repo.getAll()).thenReturn(SHOW_LIST);
 
         Predicate<Show> filters = Show.ratingContains(8.8, 8.8);
@@ -104,7 +101,7 @@ public class ShowCompileServiceTest {
     }
 
     @Test
-    void shouldBeReturnedSortedByReverseRatingIfFilterNull() {
+    void shouldBeSortedByReverseRatingIfFilterIsNull() {
         Mockito.when(repo.getAll()).thenReturn(SHOW_LIST);
 
         Comparator<Show> sorting = Show.BY_RATING.reversed();
